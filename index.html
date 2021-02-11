@@ -3,12 +3,14 @@
   <head>
     <title>Ms Merriweather</title>
     <style>
-      body, html {
+      body,
+      html {
         height: 100%;
       }
       body {
         background-color: #eee;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 20px;
         font-weight: lighter;
         display: flex;
@@ -16,7 +18,8 @@
         align-items: center;
       }
 
-      h1, p {
+      h1,
+      p {
         margin: 0 0 1rem 0;
       }
 
@@ -24,7 +27,7 @@
         width: 400px;
         display: flex;
         flex-direction: column;
-        border: 1px
+        border: 1px;
       }
 
       #form {
@@ -63,48 +66,39 @@
         <!-- description -->
       </p>
       <form id="form">
-        <input 
-          id="zip" 
-          type="number" 
+        <input
+          id="zip"
+          type="number"
           placeholder="zip code"
           title="Please Enter a valid Zip Code"
           pattern="^\d{5}(?:[-\s]\d{4})?$"
-        >
+        />
         <button type="submit">Search</button>
       </form>
     </div>
 
-    <script>
+    <script type="module">
+      // import getWeather function
+      import getWeather from './index.js';
       // ------------------------------------------------------
       // Developer Code
 
       // Get Element refererences
-      const tempEl = document.getElementById('temp')
-      const descEl = document.getElementById('desc')
-      const formEl = document.getElementById('form')
-      const zipInput = document.getElementById('zip')
+      const tempEl = document.getElementById('temp');
+      const descEl = document.getElementById('desc');
+      const formEl = document.getElementById('form');
+      const zipInput = document.getElementById('zip');
 
       // Define event listeners
       formEl.addEventListener('submit', (e) => {
-        e.preventDefault()
-        const zip = zipInput.value
-        getWeather(zip)
-      })
-
-      // Functions 
-    function getWeather(zip) {
-        const apiKey = '467355df4c808dd6134a3b64e9ace282'
-        const units = 'imperial'
-        const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apiKey}&units=${units}`
-        fetch(path)
-          .then(res => res.json())
-          .then(json => {
-            temp.innerHTML = json.main.temp
-            desc.innerHTML = json.weather[0].description
-          })
-          .catch(err => console.log(err.message))
-      }
-           
+        e.preventDefault();
+        const apikey = '2f5bfb7bf50c64ce137dffa6c5373b4d';
+        const zip = zipInput.value;
+        getWeather(apikey, zip, (json) => {
+          tempEl.innerHTML = json.main.temp;
+          descEl.innerHTML = json.weather[0].description;
+        });
+      });
     </script>
   </body>
 </html>
