@@ -1,12 +1,11 @@
-function getWeather(apikey, zip, callback) {
+function getWeather(apikey, zip) {
   const units = 'imperial';
   const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${units}`;
-  fetch(path)
-    .then((res) => res.json())
-    .then((json) => {
-      callback(json);
-    })
-    .catch((err) => console.log(err.message));
+
+  const resPromise = fetch(path);
+  const jsonPromise = resPromise.then((res) => res.json());
+
+  return jsonPromise;
 }
 
 export default getWeather;
