@@ -95,10 +95,12 @@
         const apikey = '2f5bfb7bf50c64ce137dffa6c5373b4d';
         const zip = zipInput.value;
 
-        getWeather(zip, apikey)
+        getWeather(apikey, zip)
           .then((data) => {
-            tempEl.innerHTML = json.main.temp;
-            descEl.innerHTML = json.weather[0].description;
+            console.log('-------');
+            console.log(data);
+            tempEl.innerHTML = data.temp;
+            descEl.innerHTML = data.description;
           })
           .catch((err) => console.log(err.message));
       });
