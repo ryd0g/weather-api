@@ -98,7 +98,11 @@
 
     <script type="module">
       // import getWeather function
-      import getWeather from './index.js';
+      import {
+        getWeatherByZip,
+        getWeatherByCity,
+        getWeatherByGeo,
+      } from './index.js';
       // ------------------------------------------------------
       // Developer Code
 
@@ -117,7 +121,7 @@
         const apikey = '2f5bfb7bf50c64ce137dffa6c5373b4d';
         const zip = zipInput.value;
 
-        getWeather(apikey, zip)
+        getWeatherByZip(apikey, zip)
           .then((data) => {
             console.log('-------');
             console.log(data);
