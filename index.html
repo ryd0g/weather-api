@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ms Merriweather</title>
+    <title>Weather Finder</title>
     <style>
       body,
       html {
@@ -28,6 +28,13 @@
         display: flex;
         flex-direction: column;
         border: 1px;
+      }
+
+      #feels-like,
+      #temp-min,
+      #temp-max {
+        font-size: 1em;
+        font-weight: bold;
       }
 
       #form {
@@ -62,6 +69,18 @@
       <h1 id="temp">
         <!--Temp -->
       </h1>
+      <p>
+        Feels like:
+        <span id="feels-like"></span>
+      </p>
+      <p>
+        Min:
+        <span id="temp-min"></span>
+      </p>
+      <p>
+        Max:
+        <span id="temp-max"></span>
+      </p>
       <p id="desc">
         <!-- description -->
       </p>
@@ -85,6 +104,9 @@
 
       // Get Element refererences
       const tempEl = document.getElementById('temp');
+      const feelsLikeEl = document.getElementById('feels-like');
+      const tempminEl = document.getElementById('temp-min');
+      const tempmaxEl = document.getElementById('temp-max');
       const descEl = document.getElementById('desc');
       const formEl = document.getElementById('form');
       const zipInput = document.getElementById('zip');
@@ -101,6 +123,9 @@
             console.log(data);
             tempEl.innerHTML = data.temp;
             descEl.innerHTML = data.description;
+            feelsLikeEl.innerHTML = data.feels_like;
+            tempminEl.innerHTML = data.temp_min;
+            tempmaxEl.innerHTML = data.temp_max;
           })
           .catch((err) => console.log(err.message));
       });
